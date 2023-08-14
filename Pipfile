@@ -1,0 +1,33 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cu113/"
+verify_ssl = true
+name = "downloadpytorch"
+
+[packages]
+setuptools= "==59.5.0"
+torch = {index="downloadpytorch", version="==1.10.0+cu113"}
+torchvision = {index="downloadpytorch", version="==0.11.1+cu113"}
+pytorch-lightning = "==1.8.0"
+lightning-bolts = "==0.6.0.post1"
+lightning-lite= "==1.8.0"
+lightning-utilities= "==0.3.0"
+numpy = "*"
+absl-py = "*"
+einops = "*"
+typing = "*"
+opencv-python = "*"
+wandb = "*"
+scikit-learn = "*"
+matplotlib = "*"
+ml-collections = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.8"
