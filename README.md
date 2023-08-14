@@ -11,7 +11,7 @@ to install the required dependencies for the Agglomerator.
 
 ## SAM Setup
 
-pip install git+https://github.com/facebookresearch/segment-anything.git
+``pip install git+https://github.com/facebookresearch/segment-anything.git``
 
 ## Dataset
 
