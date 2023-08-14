@@ -49,12 +49,6 @@ Refer to [this page](src/flags_Agglomerator.py) for additional info about each f
 
 ![Training](img/SAM_pretrain.png)
 
-## Pre-trained models
-
-We provide [pre-trained models](https://drive.google.com/drive/folders/1fydLRfoyZVsKKZYgKHrjh2lfstLWGbh1?usp=sharing) that can be used to plot islands of agreement or fine-tune for image classification. To fine-tune a pretrained model, just run:
-
-``CUDA_VISIBLE_DEVICES=0 python src/main.py --flagfile config/config_CIFAR10.cfg --patch_size 1 --patch_dim 128 --resume_training --supervise --load_checkpoint_dir path_to_pretrained_model.ckpt``
-
 ## Plotting islands of agreement
 
 To enable live visualization of the islands of the agreement during training/val/test, set the flag ``--plot_islands``.
