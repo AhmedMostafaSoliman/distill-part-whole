@@ -70,4 +70,5 @@ To enable live visualization of the islands of the agreement during training/val
 
 - Theoretical idea by [Geoffrey Hinton](https://arxiv.org/pdf/2102.12627.pdf)
 - Agglomerator model by [mmlab-cv](https://github.com/mmlab-cv/Agglomerator)
+- Segmentation framework by [FAIR](https://ai.meta.com/research/publications/segment-anything)
 - Pretrained models for generating the masks embedding by [Ross Wightman](https://github.com/huggingface/pytorch-image-models)
