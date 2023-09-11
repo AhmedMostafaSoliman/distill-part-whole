@@ -8,7 +8,7 @@ from PIL import Image
 from tqdm import tqdm
 
 
-def get_all_images_embeds(device, split_masks_path, split_imgs_path, output_embeds_path, encoder_model_name, crop=False):
+def get_all_images_embeds(device, split_masks_path, split_imgs_path, output_embeds_path, encoder_model_name, crop, img_width, img_height):
     def get_embeds(images):
         processed_tensors = []
         for img in images:
@@ -34,7 +34,7 @@ def get_all_images_embeds(device, split_masks_path, split_imgs_path, output_embe
     def get_masked_images(pkl_path, img_path, level, crop=False):
         with open(pkl_path, 'rb') as f:
             masks = pickle.load(f)
-        origimg = Image.open(img_path).convert('RGB').resize((224, 224))
+        origimg = Image.open(img_path).convert('RGB').resize((img_width, img_height))
         masked_imgs = []
         for mask in masks:
             if crop:
@@ -61,7 +61,8 @@ def get_all_images_embeds(device, split_masks_path, split_imgs_path, output_embe
         class_imgs_path = os.path.join(split_imgs_path, class_path)
         class_masks_path = os.path.join(split_masks_path, class_path)
         for img in tqdm(os.listdir(class_imgs_path)):
-            masks_path = os.path.join(class_masks_path, img.replace('.JPEG', '.pkl'))
+            img_extension = img.split('.')[-1]
+            masks_path = os.path.join(class_masks_path, img.replace('.' + img_extension, '.pkl'))
             img_path = os.path.join(class_imgs_path, img)
             all_levels_embeds = []
             for level in range(3):
@@ -77,7 +78,7 @@ def get_all_images_embeds(device, split_masks_path, split_imgs_path, output_embe
             img_embeds = np.stack(all_levels_embeds, axis=1)
 
             # save level_embeds to a file
-            embeds_path = os.path.join(output_embeds_path, class_path, img.replace('.JPEG', '.pkl'))
+            embeds_path = os.path.join(output_embeds_path, class_path, img.replace('.' + img_extension, '.pkl'))
             #mkdir if it doesnt exist
             if not os.path.exists(os.path.dirname(embeds_path)):
                 os.makedirs(os.path.dirname(embeds_path))
@@ -120,10 +121,22 @@ if __name__ == '__main__':
                         type=lambda x: (str(x).lower() == 'true'),
                         default=False,
                         help='Whether to crop the masked image or not')
+    
+    parser.add_argument('--img_height',
+                        type=int,
+                        default=224,
+                        help='Image size to use for the model')
+    
+    # img width
+    parser.add_argument('--img_width',
+                        type=int,
+                        default=224,
+                        help='Image size to use for the model')
 
     args = parser.parse_args()
 
-    get_all_images_embeds(args.device, args.in_masks_path, args.in_images_path, args.out_data_path, args.encoder_model_name, args.crop)
+    get_all_images_embeds(args.device, args.in_masks_path, args.in_images_path, args.out_data_path, args.encoder_model_name, args.crop,
+                          args.img_width, args.img_height)
 
 
 

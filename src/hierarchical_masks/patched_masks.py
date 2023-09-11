@@ -27,6 +27,7 @@ def get_patched_output(dataset_dir, out_data_path, patch_size, img_size, process
 
         for image in tqdm.tqdm(class_image_paths):
             image_path = os.path.join(class_dir, image)
+            img_extension = image_path.split('.')[-1]
             image = cv2.imread(image_path)
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             image = cv2.resize(image, (img_size,img_size))
@@ -45,7 +46,7 @@ def get_patched_output(dataset_dir, out_data_path, patch_size, img_size, process
             if len(class_chunk_batched_input)% processing_batch_size == 0 and len(class_chunk_batched_input):
                 class_chunk_batched_output = sam(class_chunk_batched_input, multimask_output=True)
                 for img_name, item in zip(imgpath_chunk,class_chunk_batched_output):
-                    out_f_path = os.path.join(out_data_path, image_class, img_name.split('/')[-1].replace('.JPEG','.pkl'))
+                    out_f_path = os.path.join(out_data_path, image_class, img_name.split('/')[-1].replace('.'+img_extension,'.pkl'))
                     with open(out_f_path, 'wb') as f:
                         pickle.dump([mask.cpu().numpy() for mask in item['masks']], f, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -59,7 +60,7 @@ def get_patched_output(dataset_dir, out_data_path, patch_size, img_size, process
         if(len(class_chunk_batched_input)):
             class_chunk_batched_output = sam(class_chunk_batched_input, multimask_output=True)
             for img_name, item in zip(imgpath_chunk,class_chunk_batched_output):
-                out_f_path = os.path.join(out_data_path, image_class, img_name.split('/')[-1].replace('.JPEG','.pkl'))
+                out_f_path = os.path.join(out_data_path, image_class, img_name.split('/')[-1].replace('.'+img_extension,'.pkl'))
                 with open(out_f_path, 'wb') as f:
                     pickle.dump([mask.cpu().numpy() for mask in item['masks']], f, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -113,6 +114,7 @@ if __name__ == "__main__":
     parser.add_argument('--out_data_path',
                         type=str,
                         help='Path to the output data')
+    
     args = parser.parse_args()
 
     sam = sam_model_registry[args.model_type](checkpoint=args.sam_checkpoint)
