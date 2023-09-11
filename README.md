@@ -23,7 +23,7 @@ then place it in datasets/imagenette2
 Firstly, we will generate the multi-output SAM masks for our dataset with the desired configurations.
 For examples to generate the masks for the validation set and for the particular configuration defined in ``config/config_IMAGENETTE.cfg`` we would like to divide an image with size 224 x 224 into 14 x 14 (i.e patches each with size 16 x 16), so we execute:
 
-``python src/hierarchical_masks/patched_masks.py --device=cuda:1 --split=val --in_data_path=path_to_val_input_images --out_data_path=path_to_out_val_masks --sam_checkpoint=path_to_vit_h_sam_checkpoint --sam_model_type=vit_h --img_size 224 --patch_size=16``
+``python src/hierarchical_masks/patched_masks.py --device=cuda:1 --split=val --in_data_path=path_to_val_input_images --out_data_path=path_to_out_val_masks --sam_checkpoint=path_to_vit_h_sam_checkpoint --model_type=vit_h --img_size 224 --patch_size=16``
 
 this will generate a pickled file for each image containing 14 x 14 x 3 masks
 
