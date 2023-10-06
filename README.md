@@ -1,5 +1,5 @@
 # Distilling Part-whole Hierarchical Knowledge from a Huge Pretrained Class Agnostic Segmentation Framework
-Official code for "Distilling Part-whole Hierarchical Knowledge from a Huge Pretrained Class Agnostic Segmentation Framework" ([Ahmed Radwan](https://scholar.google.com/citations?user=LCz8YhMAAAAJ&hl=en), [Mohamed S. Shehata](https://scholar.google.com/citations?hl=en&user=i9PpMVkAAAAJ)) (Accepted for ICCV'23's Workshop Visual Inductive Priors for Data-Efficient Deep Learning) \[[pdf](https://openreview.net/pdf?id=pMo0hV6xQz)\]
+Official code for "Distilling Part-whole Hierarchical Knowledge from a Huge Pretrained Class Agnostic Segmentation Framework" ([Ahmed Radwan](https://scholar.google.com/citations?user=LCz8YhMAAAAJ&hl=en), [Mohamed S. Shehata](https://scholar.google.com/citations?hl=en&user=i9PpMVkAAAAJ)) (Accepted for ICCV'23's Workshop Visual Inductive Priors for Data-Efficient Deep Learning) \[[pdf](https://openaccess.thecvf.com/content/ICCV2023W/VIPriors/papers/Radwan_Distilling_Part-Whole_Hierarchical_Knowledge_from_a_Huge_Pretrained_Class_Agnostic_ICCVW_2023_paper.pdf)\]
 
 ## Requirements Setup
 
@@ -57,13 +57,13 @@ To enable live visualization of the islands of the agreement during training/val
 
 ## Citing
 
-    @inproceedings{
-      radwan2023distilling,
-      title={Distilling Part-whole Hierarchical Knowledge from a Huge Pretrained Class Agnostic Segmentation Framework},
-      author={Ahmed Mostafa Soliman Radwan and Mohamed S. Shehata},
-      booktitle={4th Visual Inductive Priors for Data-Efficient Deep Learning Workshop},
-      year={2023},
-      url={https://openreview.net/forum?id=pMo0hV6xQz}
+    @InProceedings{Radwan_2023_ICCV,
+        author    = {Radwan, Ahmed and Shehata, Mohamed S.},
+        title     = {Distilling Part-Whole Hierarchical Knowledge from a Huge Pretrained Class Agnostic Segmentation Framework},
+        booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) Workshops},
+        month     = {October},
+        year      = {2023},
+        pages     = {238-246}
     }
 
 ## Credits
